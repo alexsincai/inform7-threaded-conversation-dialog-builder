@@ -12,7 +12,7 @@ const App = () => {
         followed: "some other quip",
         comment: "You say",
         reply: "The actor replies",
-        nag: "The actor insists",
+        nag: null,
     });
 
     return (
@@ -52,6 +52,7 @@ const App = () => {
                         <option value="questioning">questioning</option>
                         <option value="informative">informative</option>
                         <option value="performative">performative</option>
+                        <option value="restrictive">restrictive</option>
                     </select>
                     <span className="input-group-text">
                         {" "}
@@ -203,6 +204,8 @@ ${dialog.nag ? `The nag is "${dialog.nag.replace(/\n+/gim, "[pp]")}".` : ""}`
                     .map((x) => x.trim())
                     .filter((x) => !!x)
                     .join("\n")
+                    .replace("a informative", "an informative")
+                    .replace("a NPC", "an NPC")
                     .replace(/\[pp\]/g, "\n\n")}></textarea>
         </>
     );
