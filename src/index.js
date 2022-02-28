@@ -204,8 +204,7 @@ ${dialog.nag ? `The nag is "${dialog.nag.replace(/\n+/gim, "[pp]")}".` : ""}`
                     .map((x) => x.trim())
                     .filter((x) => !!x)
                     .join("\n")
-                    .replace("a informative", "an informative")
-                    .replace("a NPC", "an NPC")
+                    .replace(/a (NPC|informative)/gi, "an $1")
                     .replace(/\[pp\]/g, "\n\n")}></textarea>
         </>
     );
