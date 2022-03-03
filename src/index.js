@@ -5,6 +5,7 @@ const App = () => {
     const [dialog, setDialog] = useState({
         quipName: "example",
         npc: false,
+        beatOpened: false,
         type: "questioning",
         name: "an actor",
         printed: "",
@@ -15,40 +16,48 @@ const App = () => {
         nag: null,
     });
 
+    const setValue = (e) =>
+        setDialog({ ...dialog, [e.target.id]: e.target.value });
+    const setCheck = (e) =>
+        setDialog({ ...dialog, [e.target.id]: e.target.checked });
+
     return (
         <>
             <form>
                 <div className="input-group mb-3">
                     <input
-                        type="text"
+                        id="quipName"
                         className="form-control"
+                        type="text"
                         value={dialog.quipName}
-                        onChange={(e) =>
-                            setDialog({ ...dialog, quipName: e.target.value })
-                        }
+                        onChange={setValue}
                     />
                     <span className="input-group-text"> is a </span>
                     <label className="input-group-text">
                         <input
+                            id="npc"
                             className="form-check-input"
                             type="checkbox"
-                            id="npc"
                             checked={dialog.npc}
-                            onChange={(e) =>
-                                setDialog({
-                                    ...dialog,
-                                    npc: e.target.checked,
-                                })
-                            }
-                        />
+                            onChange={setCheck}
+                        />{" "}
                         NPC-directed
                     </label>
+                    <label className="input-group-text">
+                        <input
+                            id="beatOpened"
+                            className="form-check-input"
+                            type="checkbox"
+                            checked={dialog.beatOpened}
+                            onChange={setCheck}
+                        />{" "}
+                        beat-opened
+                    </label>
                     <select
+                        id="type"
                         className="form-select"
                         value={dialog.type}
-                        onChange={(e) =>
-                            setDialog({ ...dialog, type: e.target.value })
-                        }>
+                        onChange={setValue}>
                         <option value="questioning">questioning</option>
                         <option value="informative">informative</option>
                         <option value="performative">performative</option>
@@ -59,12 +68,11 @@ const App = () => {
                         quip, quip-supplying{" "}
                     </span>
                     <input
-                        type="text"
+                        id="name"
                         className="form-control"
+                        type="text"
                         value={dialog.name}
-                        onChange={(e) =>
-                            setDialog({ ...dialog, name: e.target.value })
-                        }
+                        onChange={setValue}
                     />
                 </div>
                 <div className="input-group mb-3">
@@ -72,22 +80,20 @@ const App = () => {
                         The printed name is
                     </span>
                     <input
-                        type="text"
+                        id="printed"
                         className="form-control"
+                        type="text"
                         value={dialog.printed}
-                        onChange={(e) =>
-                            setDialog({ ...dialog, printed: e.target.value })
-                        }
+                        onChange={setValue}
                     />
                 </div>
                 <div className="input-group mb-3">
                     <span className="input-group-text">It</span>
                     <select
+                        id="following"
                         className="form-select"
                         value={dialog.following}
-                        onChange={(e) =>
-                            setDialog({ ...dialog, following: e.target.value })
-                        }>
+                        onChange={setValue}>
                         <option value="none">does not follow anything</option>
                         <option value="directly-follows">
                             directly-follows
@@ -98,15 +104,11 @@ const App = () => {
                     </select>
                     {dialog.following !== "none" ? (
                         <input
-                            type="text"
+                            id="followeed"
                             className="form-control"
+                            type="text"
                             value={dialog.followed}
-                            onChange={(e) =>
-                                setDialog({
-                                    ...dialog,
-                                    followed: e.target.value,
-                                })
-                            }
+                            onChange={setValue}
                         />
                     ) : (
                         ""
@@ -117,53 +119,44 @@ const App = () => {
                         The proper scene is
                     </span>
                     <input
-                        type="text"
+                        id="scene"
                         className="form-control"
+                        type="text"
                         value={dialog.scene}
-                        onChange={(e) =>
-                            setDialog({ ...dialog, scene: e.target.value })
-                        }
+                        onChange={setValue}
                     />
                 </div>
                 <div className="input-group mb-3">
                     <span className="input-group-text">The comment is</span>
                     <textarea
+                        id="comment"
                         className="form-control"
                         value={dialog.comment}
-                        onChange={(e) =>
-                            setDialog({
-                                ...dialog,
-                                comment: e.target.value,
-                            })
-                        }
+                        onChange={setValue}
                     />
                 </div>
                 <div className="input-group mb-3">
                     <span className="input-group-text">The reply is</span>
                     <textarea
+                        id="reply"
                         className="form-control"
                         value={dialog.reply}
-                        onChange={(e) =>
-                            setDialog({
-                                ...dialog,
-                                reply: e.target.value,
-                            })
-                        }
+                        onChange={setValue}
                     />
                 </div>
-                <div className="input-group mb-3">
-                    <span className="input-group-text">The nag is</span>
-                    <textarea
-                        className="form-control"
-                        value={dialog.nag}
-                        onChange={(e) =>
-                            setDialog({
-                                ...dialog,
-                                nag: e.target.value,
-                            })
-                        }
-                    />
-                </div>
+                {dialog.type === "restrictive" ? (
+                    <div className="input-group mb-3">
+                        <span className="input-group-text">The nag is</span>
+                        <textarea
+                            id="nag"
+                            className="form-control"
+                            value={dialog.nag}
+                            onChange={setValue}
+                        />
+                    </div>
+                ) : (
+                    ""
+                )}
             </form>
 
             <textarea
@@ -172,8 +165,8 @@ const App = () => {
                 rows="20"
                 value={`
 ${dialog.quipName} is a ${dialog.npc ? "NPC-directed" : ""} ${
-                    dialog.type
-                } quip, quip-supplying ${dialog.name}.
+                    dialog.beatOpened ? "beat-opened" : ""
+                } ${dialog.type} quip, quip-supplying ${dialog.name}.
 ${
     dialog.following !== "none"
         ? `It ${dialog.following} ${dialog.followed}.`
@@ -189,8 +182,10 @@ Understand "${dialog.printed}" as ${dialog.quipName}.
         : ""
 }
 ${
-    !dialog.nag && dialog.comment
-        ? `The comment is "${dialog.comment.replace(/\n+/gim, "[pp]")}".`
+    !dialog.nag
+        ? dialog.comment
+            ? `The comment is "${dialog.comment.replace(/\n+/gim, "[pp]")}".`
+            : ""
         : ""
 }
 ${
