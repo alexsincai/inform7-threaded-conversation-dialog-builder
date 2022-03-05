@@ -6,6 +6,7 @@ const Form = () => {
     const [current] = useAtom(state.current);
 
     const dialog = quips[current];
+    const otherQuips = quips.filter((_, i) => i !== current);
 
     const setValue = (e) =>
         setQuips([
@@ -98,19 +99,26 @@ const Form = () => {
                     </option>
                 </select>
                 {dialog.following !== "none" ? (
-                    <select
-                        id="followed"
-                        className="form-select"
-                        value={dialog.followed}
-                        onChange={setValue}>
-                        {quips
-                            .filter((q) => q.quipName !== dialog.quipName)
-                            .map((q, i) => (
+                    otherQuips.length ? (
+                        <select
+                            id="followed"
+                            className="form-select"
+                            value={dialog.followed}
+                            onChange={setValue}>
+                            {otherQuips.map((q, i) => (
                                 <option value={q.quipName} key={i}>
                                     {q.quipName}
                                 </option>
                             ))}
-                    </select>
+                        </select>
+                    ) : (
+                        <input
+                            id="followed"
+                            className="form-control"
+                            value={dialog.followed}
+                            onChange={setValue}
+                        />
+                    )
                 ) : (
                     ""
                 )}
