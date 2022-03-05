@@ -6,7 +6,9 @@ const Form = () => {
     const [current] = useAtom(state.current);
 
     const dialog = quips[current];
-    const otherQuips = quips.filter((_, i) => i !== current);
+    const otherQuips = quips
+        .filter((_, i) => i !== current)
+        .map((q) => q.quipName);
 
     const setValue = (e) =>
         setQuips([
@@ -85,44 +87,37 @@ const Form = () => {
                     onChange={setValue}
                 />
             </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text">It</span>
-                <select
-                    id="following"
-                    className="form-select"
-                    value={dialog.following}
-                    onChange={setValue}>
-                    <option value="none">does not follow anything</option>
-                    <option value="directly-follows">directly-follows</option>
-                    <option value="indirectly-follows">
-                        indirectly-follows
-                    </option>
-                </select>
-                {dialog.following !== "none" ? (
-                    otherQuips.length ? (
+            {otherQuips.length ? (
+                <div className="input-group mb-3">
+                    <span className="input-group-text">It</span>
+                    <select
+                        id="following"
+                        className="form-select"
+                        value={dialog.following}
+                        onChange={setValue}>
+                        <option value="none">does not follow anything</option>
+                        <option value="directly-follows">
+                            directly-follows
+                        </option>
+                        <option value="indirectly-follows">
+                            indirectly-follows
+                        </option>
+                    </select>
+                    {dialog.following !== "none" ? (
                         <select
                             id="followed"
                             className="form-select"
                             value={dialog.followed}
                             onChange={setValue}>
                             {otherQuips.map((q, i) => (
-                                <option value={q.quipName} key={i}>
-                                    {q.quipName}
+                                <option value={q} key={i}>
+                                    {q}
                                 </option>
                             ))}
                         </select>
-                    ) : (
-                        <input
-                            id="followed"
-                            className="form-control"
-                            value={dialog.followed}
-                            onChange={setValue}
-                        />
-                    )
-                ) : (
-                    ""
-                )}
-            </div>
+                    ) : null}
+                </div>
+            ) : null}
             <div className="input-group mb-3">
                 <span className="input-group-text">The proper scene is</span>
                 <input
