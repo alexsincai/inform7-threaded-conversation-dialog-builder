@@ -14,6 +14,14 @@ const App = () => {
         <>
             {page === 0 && <Builder />}
             {page === 1 && <Result />}
+            {page === 2 && (<>
+                <p>This is a visual(ish) editor for creating dialog quips, for use in <a href="http://inform7.com/">Inform7</a> with the <a href="https://i7el.herokuapp.com/extensions/threaded-conversation-by-chris-conley">Threaded Conversation extension</a>.</p>
+                <p>The dialog editor allows the creation of quips, specifying what type of quip it is, the actor(s) to whom it is restricted, the scene during which it will appear, if any, and the nag, if any.</p>
+                <p className="fw-bold">It only allows a quip to follow a single other quip. Should you need it to follow several, you will need to edit it manually.</p>
+                <p>Adding a new quip will copy the current actor's name to the new quip.</p>
+                <p>The resulting quips will be displayed, nicely formatted, in the Results tab.</p>
+                <p>It was built by <strong>Reason: Optional</strong> in <a href="https://reactjs.org/">React</a>, with <a href="https://jotai.org/">Jotai</a> for state management and <a href="https://getbootstrap.com/">Bootstrap</a> for layout.</p>
+            </>)}
         </>
     );
 };

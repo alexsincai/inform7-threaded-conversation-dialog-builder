@@ -5,6 +5,7 @@ const quipResult = ({
     quipName,
     npc,
     beatOpened,
+    repeatable,
     type,
     name,
     printed,
@@ -18,9 +19,9 @@ const quipResult = ({
     `
 ${quipName} is a ${npc ? "NPC-directed" : ""} ${
         beatOpened ? "beat-opened" : ""
-        } ${type} quip.
+    } ${repeatable ? "repeatable" : ""} ${type} quip.
 It quip-supplies ${name}.
-${(following !== "none" && followed !== "") ? `It ${following} ${followed}.` : ""}
+${following !== "none" && followed !== "" ? `It ${following} ${followed}.` : ""}
 ${scene ? `The proper scene is ${scene}.` : ""}
 ${
     printed

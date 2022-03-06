@@ -2,17 +2,18 @@ import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
 const base = {
-    quipName: "example",
+    quipName: "quip name",
     npc: false,
     beatOpened: false,
+    repeatable: false,
     type: "questioning",
-    name: "an actor",
-    printed: "",
+    name: "a person",
+    printed: "printed quip name",
     scene: "",
     following: "none",
     followed: "",
-    comment: "",
-    reply: "",
+    comment: "The player's comment",
+    reply: "The person's reply",
     nag: "",
 };
 

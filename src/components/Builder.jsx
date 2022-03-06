@@ -11,7 +11,13 @@ const Builder = () => {
 
     const addQuip = (e) => {
         e.preventDefault();
-        setQuips([...quips, { ...base }]);
+        setQuips([
+            ...quips,
+            {
+                ...base,
+                name: quips[current].name ? quips[current].name : base.name,
+            },
+        ]);
         setCurrent(current + 1);
     };
 

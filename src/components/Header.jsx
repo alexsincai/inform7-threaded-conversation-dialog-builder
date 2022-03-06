@@ -9,6 +9,9 @@ const Header = () => {
             <li className="nav-item">
                 <Link id={1}>Result</Link>
             </li>
+            <li className="nav-item">
+                <Link id={2}>About</Link>
+            </li>
         </ul>
     );
 };

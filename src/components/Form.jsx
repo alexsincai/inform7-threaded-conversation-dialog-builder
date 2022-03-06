@@ -40,6 +40,16 @@ const Form = () => {
                 <span className="input-group-text"> is a </span>
                 <label className="input-group-text">
                     <input
+                        id="repeatable"
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={dialog.repeatable}
+                        onChange={setCheck}
+                    />{" "}
+                    repeatable
+                </label>
+                <label className="input-group-text">
+                    <input
                         id="npc"
                         className="form-check-input"
                         type="checkbox"
