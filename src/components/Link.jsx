@@ -1,23 +1,24 @@
 import { useAtom } from "jotai";
-import state from "./state";
+import state from "../state"
 
-const Link = ({ id, decider, callback, classes, children }) => {
+const Link = ({ id, children }) => {
+    const [page, setPage] = useAtom(state.page);
 
     const clickHandler = (e) => {
         e.preventDefault();
-        callback(id);
+        setPage(id);
     };
 
-    return decider === id ? (
+    return page === id ? (
         <a
             href="/"
-            className={classes + " active"}
+            className="nav-link active"
             aria-current="page"
             onClick={clickHandler}>
             {children}
         </a>
     ) : (
-        <a href="/" className={classes} onClick={clickHandler}>
+        <a href="/" className="nav-link" onClick={clickHandler}>
             {children}
         </a>
     );

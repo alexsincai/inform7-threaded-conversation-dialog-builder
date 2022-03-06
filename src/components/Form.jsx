@@ -1,14 +1,17 @@
 import { useAtom } from "jotai";
-import state from "./state";
+import state from "../state";
 
 const Form = () => {
     const [quips, setQuips] = useAtom(state.quips);
     const [current] = useAtom(state.current);
 
     const dialog = quips[current];
-    const otherQuips = quips
-        .filter((_, i) => i !== current)
-        .map((q) => q.quipName);
+    const otherQuips = [
+        { name: "- Select -", value: "" },
+        ...quips
+            .filter((_, i) => i !== current)
+            .map((q) => ({ name: q.quipName, value: q.quipName })),
+    ];
 
     const setValue = (e) =>
         setQuips([
@@ -25,7 +28,7 @@ const Form = () => {
         ]);
 
     return (
-        <form>
+        <form className="col-md-9">
             <div className="input-group mb-3">
                 <input
                     id="quipName"
@@ -96,11 +99,11 @@ const Form = () => {
                         value={dialog.following}
                         onChange={setValue}>
                         <option value="none">does not follow anything</option>
-                        <option value="directly-follows">
-                            directly-follows
-                        </option>
                         <option value="indirectly-follows">
                             indirectly-follows
+                        </option>
+                        <option value="directly-follows">
+                            directly-follows
                         </option>
                     </select>
                     {dialog.following !== "none" ? (
@@ -110,8 +113,8 @@ const Form = () => {
                             value={dialog.followed}
                             onChange={setValue}>
                             {otherQuips.map((q, i) => (
-                                <option value={q} key={i}>
-                                    {q}
+                                <option value={q.value} key={i}>
+                                    {q.name}
                                 </option>
                             ))}
                         </select>

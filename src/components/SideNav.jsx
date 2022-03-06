@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import state from "./state";
+import state from "../state";
 
 const SideNav = () => {
     const [quips, setQuips] = useAtom(state.quips);
@@ -23,9 +23,17 @@ const SideNav = () => {
 
     const removeHandler = (e) => {
         e.preventDefault();
-        setQuips([
-            ...quips.filter((_, i) => i !== parseInt(e.target.dataset.id, 10)),
-        ]);
+        const id = parseInt(e.target.dataset.id, 10);
+        if (id === 0) {
+            setCurrent(current === 0 ? 0 : current - 1);
+        } else if (id < current) {
+            setCurrent(current - 1);
+        } else if (id === current) {
+            setCurrent(
+                current === quips.length - 1 ? quips.length - 2 : current - 1
+            );
+        }
+        setQuips([...quips.filter((_, i) => i !== id)]);
     };
 
     return (

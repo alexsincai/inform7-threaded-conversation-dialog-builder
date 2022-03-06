@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import state from "./state";
+import state from "../state";
 
 const quipResult = ({
     quipName,
@@ -20,7 +20,7 @@ ${quipName} is a ${npc ? "NPC-directed" : ""} ${
         beatOpened ? "beat-opened" : ""
         } ${type} quip.
 It quip-supplies ${name}.
-${following !== "none" ? `It ${following} ${followed}.` : ""}
+${(following !== "none" && followed !== "") ? `It ${following} ${followed}.` : ""}
 ${scene ? `The proper scene is ${scene}.` : ""}
 ${
     printed
