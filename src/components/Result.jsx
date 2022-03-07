@@ -12,6 +12,7 @@ const quipResult = ({
     scene,
     following,
     followed,
+    mentions,
     comment,
     reply,
     nag,
@@ -31,6 +32,7 @@ Understand "${printed}" as ${quipName}.
 `
         : ""
 }
+${mentions ? `It mentions ${mentions}.` : ""}
 ${
     !nag
         ? comment

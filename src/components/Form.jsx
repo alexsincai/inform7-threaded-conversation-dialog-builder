@@ -100,6 +100,16 @@ const Form = () => {
                     onChange={setValue}
                 />
             </div>
+            <div className="input-group mb-3">
+                <span className="input-group-text">It mentions </span>
+                <input
+                    type="text"
+                    id="mentions"
+                    className="form-control"
+                    value={dialog.mentions}
+                    onChange={setValue}
+                />
+            </div>
             {otherQuips.length ? (
                 <div className="input-group mb-3">
                     <span className="input-group-text">It</span>

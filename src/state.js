@@ -12,6 +12,7 @@ const base = {
     scene: "",
     following: "none",
     followed: "",
+    mentions: "",
     comment: "The player's comment",
     reply: "The person's reply",
     nag: "",
