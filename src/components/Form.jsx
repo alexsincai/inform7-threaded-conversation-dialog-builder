@@ -116,7 +116,7 @@ const Form = () => {
                     <select
                         id="following"
                         className="form-select"
-                        value={dialog.following}
+                        value={quips.length > 1 ? dialog.following : "none"}
                         onChange={setValue}>
                         <option value="none">does not follow anything</option>
                         <option value="indirectly-follows">
@@ -126,7 +126,7 @@ const Form = () => {
                             directly-follows
                         </option>
                     </select>
-                    {dialog.following !== "none" ? (
+                    {dialog.following !== "none" && quips.length > 1 ? (
                         <select
                             id="followed"
                             className="form-select"
