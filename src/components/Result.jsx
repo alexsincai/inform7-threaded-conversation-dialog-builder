@@ -16,6 +16,8 @@ const quipResult = ({
     comment,
     reply,
     nag,
+    availability,
+    report,
 }) =>
     `
 ${quipName} is a ${npc ? "NPC-directed" : ""} ${
@@ -41,14 +43,29 @@ ${
         : ""
 }
 ${reply ? `The reply is "${reply.replace(/\n+/gim, "[pp]")}".` : ""}    
-${nag ? `The nag is "${nag.replace(/\n+/gim, "[pp]")}".` : ""}`
+${nag ? `The nag is "${nag.replace(/\n+/gim, "[pp]")}".` : ""}
+${
+    availability
+        ? `An availability rule for ${quipName}:
+${availability.replace(/(^|\n)/g, "$1$$$$$$$$")}`
+        : ""
+    }
+${
+    report
+        ? `Report ${name} discussing ${quipName}:
+${report.replace(/(^|\n)/g, "$1$$$$$$$$")}
+$$$$$$$$continue the action.`
+        : ""
+}`
         .replace(/[ ]+/g, " ")
         .split("\n")
         .map((x) => x.trim())
         .filter((x) => !!x)
         .join("\n")
+        .replace(/\$+/g, "\t")
         .replace(/a (NPC|informative)/gi, "an $1")
-        .replace(/\[pp\]/g, "\n\n");
+        .replace(/\[pp\]/g, "\n\n")
+        .replace(/(An availability|Report)/g, "\n$1")
 
 const Result = () => {
     const [quips] = useAtom(state.quips);

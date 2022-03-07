@@ -182,6 +182,26 @@ const Form = () => {
             ) : (
                 ""
             )}
+            <div className="input-group mb-3">
+                <span className="input-group-text">
+                    An availability rule:
+                </span>
+                <textarea
+                    id="availability"
+                    className="form-control"
+                    value={dialog.availability}
+                    onChange={setValue}></textarea>
+            </div>
+            <div className="input-group mb-3">
+                <span className="input-group-text">
+                    Report:
+                </span>
+                <textarea
+                    id="report"
+                    className="form-control"
+                    value={dialog.report}
+                    onChange={setValue}></textarea>
+            </div>
         </form>
     );
 };

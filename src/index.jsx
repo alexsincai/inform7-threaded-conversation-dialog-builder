@@ -20,6 +20,7 @@ const App = () => {
                 <p><strong>Please be aware:</strong> if the quip starts with "a" or "the", or if it contains the words "is" or "has", you <strong>must</strong> use the printed name.</p>
                 <p className="fw-bold">It only allows a quip to follow a single other quip. Should you need it to follow several, you will need to edit it manually.</p>
                 <p>Adding a new quip will copy the current actor's name to the new quip.</p>
+                <p>Should you add any actions to the Report input, a "continue the action" will be added automatically at the end.</p>
                 <p>The resulting quips will be displayed, nicely formatted, in the Results tab.</p>
                 <p>It was built by <strong>Reason: Optional</strong> in <a href="https://reactjs.org/">React</a>, with <a href="https://jotai.org/">Jotai</a> for state management and <a href="https://getbootstrap.com/">Bootstrap</a> for layout.</p>
             </>)}

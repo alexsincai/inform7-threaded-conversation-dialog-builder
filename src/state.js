@@ -16,6 +16,8 @@ const base = {
     comment: "The player's comment",
     reply: "The person's reply",
     nag: "",
+    availability: "",
+    report: "",
 };
 
 const quips = atomWithStorage("quips", [{ ...base }]);
