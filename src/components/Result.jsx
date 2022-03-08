@@ -62,9 +62,9 @@ const quipResult = ({
     const properScene = scene ? `The proper scene is ${scene.trim()}.` : "";
     const shortened = printed
         ? printed
-              .replace(/\b(an?|it|of|and|the)\b/gim, "")
+              .replace(/\b(an?|it|of|and|the|that|she|her|he|him|his)\b/gim, "")
               .trim()
-              .replace(/\s+/gmi, " / ")
+              .replace(/\s+/gim, " / ")
               .toLocaleLowerCase()
         : "";
     const printedName = printed
