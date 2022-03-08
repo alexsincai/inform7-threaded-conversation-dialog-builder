@@ -35,13 +35,13 @@ const Builder = () => {
                 <button
                     className="btn btn-lg btn-success mb-3 w-100"
                     onClick={addQuip}>
-                    <i className="bi bi-file-plus"></i>
+                    <i className="bi bi-plus me-1"></i>
                     Add a quip
                 </button>
                 <button
                     className="btn btn-lg btn-danger mb-3 w-100"
                     onClick={resetAll}>
-                    <i className="bi bi-x-circle"></i>
+                    <i className="bi bi-x-circle me-1"></i>
                     Remove all quips
                 </button>
                 <SideNav />
