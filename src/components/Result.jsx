@@ -4,15 +4,19 @@ import state from "../state";
 const tabbedCleanup = (text, extra = false) => {
     if (!!text) {
         text += extra ? "\ncontinue the action;" : "";
-        return [...text.split("\n")]
-            .filter((x) => !!x)
-            .filter((e, i, a) => !a.slice(0, i).includes(e))
-            .map((x) => x.replace(/[;.\s]*$/gim, ""))
-            .map((x) => "[tt]" + x.replace(/[;.\s]*$/gim, ";"))
-            .map((x, i, a) =>
-                i === a.length - 1 ? x.replace(/;$/gim, ".") : x
-            )
-            .join("[pp]");
+        return (
+            [...text.split("\n")]
+                // .map((x) => x.replace(/^\t*/gmi, ""))
+                .map((x) => x.trim())
+                .filter((x) => !!x)
+                .filter((e, i, a) => !a.slice(0, i).includes(e))
+                .map((x) => x.replace(/[;.\s]*$/gim, ""))
+                .map((x) => "[tt]" + x.replace(/[;.\s]*$/gim, ";"))
+                .map((x, i, a) =>
+                    i === a.length - 1 ? x.replace(/;$/gim, ".") : x
+                )
+                .join("[pp]")
+        );
     }
     return "";
 };
@@ -60,11 +64,12 @@ const quipResult = ({
         ? `The printed name is "${printed}".[pp]The true-name is "${printed}".[pp]Understand "${printed}" as ${replacedQuipName}.`
         : "";
     const itMentions = mentions ? `It mentions ${mentions}.` : "";
-    const theComment = !nag && !npc
-        ? comment
-            ? `The comment is "${comment.replace(/\n/gim, "[pp]")}".`
-            : ""
-        : "";
+    const theComment =
+        !nag && !npc
+            ? comment
+                ? `The comment is "${comment.replace(/\n/gim, "[pp]")}".`
+                : ""
+            : "";
     const theReply = reply
         ? `The reply is "${reply.replace(/\n/gim, "[pp]")}".`
         : "";
@@ -111,7 +116,7 @@ const quipResult = ({
 const Result = () => {
     const [quips] = useAtom(state.quips);
 
-    console.log(quips.map(q => lower(q.quipName, q.addDashes)))
+    console.log(quips.map((q) => lower(q.quipName, q.addDashes)));
 
     const result = quips
         .map((e, i, a) =>
