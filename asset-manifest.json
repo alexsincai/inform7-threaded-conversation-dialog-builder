@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/inform7-threaded-conversation-dialog-builder/static/js/main.655dcb3d.js",
+    "main.js": "/inform7-threaded-conversation-dialog-builder/static/js/main.d8688980.js",
     "index.html": "/inform7-threaded-conversation-dialog-builder/index.html",
-    "main.655dcb3d.js.map": "/inform7-threaded-conversation-dialog-builder/static/js/main.655dcb3d.js.map"
+    "main.d8688980.js.map": "/inform7-threaded-conversation-dialog-builder/static/js/main.d8688980.js.map"
   },
   "entrypoints": [
-    "static/js/main.655dcb3d.js"
+    "static/js/main.d8688980.js"
   ]
 }
