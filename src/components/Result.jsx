@@ -17,6 +17,14 @@ const tabbedCleanup = (text, extra = false) => {
     return "";
 };
 
+const lower = (text, addDashes = false) =>
+    addDashes
+        ? text
+              .trim()
+              .replace(/[^a-z]+/gim, "-")
+              .toLocaleLowerCase()
+        : text;
+
 const quipResult = ({
     addDashes,
     quipName,
@@ -36,14 +44,13 @@ const quipResult = ({
     availability,
     report,
 }) => {
-    const replacedQuipName = addDashes
-        ? quipName.trim().replace(/\s+/g, "-")
-        : quipName;
+    const replacedQuipName = lower(quipName, addDashes);
     const npcDirected = npc ? "NPC-directed" : "";
     const isBeatOpened = beatOpened ? "beat-opened" : "";
     const isRepeatable = repeatable ? "repeatable" : "";
     const theType = npc ? "" : type;
     const showQuip = `${replacedQuipName} is a ${isRepeatable} ${npcDirected} ${isBeatOpened} ${theType} quip.`;
+    const theName = `It quip-supplies ${name}.`;
     const itFollows =
         following !== "none" && followed !== ""
             ? `It ${following} ${followed}.`
@@ -55,13 +62,13 @@ const quipResult = ({
     const itMentions = mentions ? `It mentions ${mentions}.` : "";
     const theComment = !nag
         ? comment
-            ? `The comment is "${comment.replace(/\n+/gim, "[pp]")}".`
+            ? `The comment is "${comment.replace(/\n/gim, "[pp]")}".`
             : ""
         : "";
     const theReply = reply
-        ? `The reply is "${reply.replace(/\n+/gim, "[pp]")}".`
+        ? `The reply is "${reply.replace(/\n/gim, "[pp]")}".`
         : "";
-    const theNag = nag ? `The nag is "${nag.replace(/\n+/gim, "[pp]")}".` : "";
+    const theNag = nag ? `The nag is "${nag.replace(/\n/gim, "[pp]")}".` : "";
     const availabilityRules = availability
         ? `An availability rule for ${replacedQuipName}:[pp]${tabbedCleanup(
               availability
@@ -76,6 +83,7 @@ const quipResult = ({
 
     const output = [
         showQuip,
+        theName,
         itFollows,
         properScene,
         printedName,
@@ -103,7 +111,19 @@ const quipResult = ({
 const Result = () => {
     const [quips] = useAtom(state.quips);
 
-    const result = quips.map(quipResult).join("\n\n\n");
+    console.log(quips.map(q => lower(q.quipName, q.addDashes)))
+
+    const result = quips
+        .map((e, i, a) =>
+            a.length > 1 &&
+            a
+                .map((q) => lower(q.quipName, true))
+                .includes(lower(e.quipName, true))
+                ? e
+                : { ...e, followed: "" }
+        )
+        .map(quipResult)
+        .join("\n\n\n");
 
     return (
         <textarea
@@ -115,3 +135,4 @@ const Result = () => {
 };
 
 export default Result;
+export { lower };

@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import state from "../state";
+import { lower } from "./Result";
 
 const Form = () => {
     const [quips, setQuips] = useAtom(state.quips);
@@ -10,7 +11,10 @@ const Form = () => {
         { name: "- Select -", value: "" },
         ...quips
             .filter((_, i) => i !== current)
-            .map((q) => ({ name: q.quipName, value: q.quipName })),
+            .map((q) => ({
+                name: q.quipName,
+                value: lower(q.quipName, q.addDashes),
+            })),
     ];
 
     const setValue = (e) =>
@@ -30,14 +34,15 @@ const Form = () => {
     return (
         <form className="col-md-9">
             <div className="input-group mb-3">
-            <label className="input-group-text">
+                <label className="input-group-text">
                     <input
                         id="addDashes"
                         className="form-check-input"
                         type="checkbox"
                         checked={dialog.addDashes}
                         onChange={setCheck}
-                    />(Dash?)
+                    />
+                    (Dash?)
                 </label>
                 <input
                     id="quipName"
@@ -192,9 +197,7 @@ const Form = () => {
                 ""
             )}
             <div className="input-group mb-3">
-                <span className="input-group-text">
-                    An availability rule:
-                </span>
+                <span className="input-group-text">An availability rule:</span>
                 <textarea
                     id="availability"
                     className="form-control"
@@ -202,9 +205,7 @@ const Form = () => {
                     onChange={setValue}></textarea>
             </div>
             <div className="input-group mb-3">
-                <span className="input-group-text">
-                    Report:
-                </span>
+                <span className="input-group-text">Report:</span>
                 <textarea
                     id="report"
                     className="form-control"
