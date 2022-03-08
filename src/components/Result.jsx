@@ -27,7 +27,7 @@ const lower = (text, addDashes = false) =>
               .trim()
               .replace(/[^a-z]+/gim, "-")
               .toLocaleLowerCase()
-        : text;
+        : text.trim();
 
 const quipResult = ({
     addDashes,
@@ -59,11 +59,11 @@ const quipResult = ({
         following !== "none" && followed !== ""
             ? `It ${following} ${followed}.`
             : "";
-    const properScene = scene ? `The proper scene is ${scene}.` : "";
+    const properScene = scene ? `The proper scene is ${scene.trim()}.` : "";
     const printedName = printed
-        ? `The printed name is "${printed}".[pp]The true-name is "${printed}".[pp]Understand "${printed}" as ${replacedQuipName}.`
+        ? `The printed name is "${printed.trim()}".[pp]The true-name is "${printed.trim()}".[pp]Understand "${printed.trim()}" as ${replacedQuipName}.`
         : "";
-    const itMentions = mentions ? `It mentions ${mentions}.` : "";
+    const itMentions = mentions ? `It mentions ${mentions.trim()}.` : "";
     const theComment =
         !nag && !npc
             ? comment
@@ -115,8 +115,6 @@ const quipResult = ({
 
 const Result = () => {
     const [quips] = useAtom(state.quips);
-
-    console.log(quips.map((q) => lower(q.quipName, q.addDashes)));
 
     const result = quips
         .map((e, i, a) =>
