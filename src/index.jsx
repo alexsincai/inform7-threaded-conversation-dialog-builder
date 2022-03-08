@@ -42,8 +42,8 @@ const App = () => {
                         edit it manually.
                     </p>
                     <p>
-                        Adding a new quip will copy the current actor's name to
-                        the new quip.
+                        Adding a new quip will copy the current actor's name and
+                        the current scene to the new quip.
                     </p>
                     <p>
                         Should you add any actions to the Report input, a
