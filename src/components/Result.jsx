@@ -60,8 +60,15 @@ const quipResult = ({
             ? `It ${following} ${followed}.`
             : "";
     const properScene = scene ? `The proper scene is ${scene.trim()}.` : "";
+    const shortened = printed
+        ? printed
+              .replace(/\b(an?|it|of|and|the)\b/gim, "")
+              .trim()
+              .replace(/\s+/gmi, " / ")
+              .toLocaleLowerCase()
+        : "";
     const printedName = printed
-        ? `The printed name is "${printed.trim()}".[pp]The true-name is "${printed.trim()}".[pp]Understand "${printed.trim()}" as ${replacedQuipName}.`
+        ? `The printed name is "${printed.trim()}".[pp]The true-name is "${printed.trim()}".[pp]Understand "${shortened}" as ${replacedQuipName}.`
         : "";
     const itMentions = mentions ? `It mentions ${mentions.trim()}.` : "";
     const theComment =
