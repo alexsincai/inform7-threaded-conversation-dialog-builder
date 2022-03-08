@@ -22,6 +22,12 @@ const Builder = () => {
         setCurrent(current + 1);
     };
 
+    const resetAll = e => {
+        e.preventDefault();
+        setQuips([base]);
+        setCurrent(0)
+    }
+
     return (
         <div className="row">
             <Form />
@@ -29,7 +35,14 @@ const Builder = () => {
                 <button
                     className="btn btn-lg btn-success mb-3 w-100"
                     onClick={addQuip}>
-                    +
+                    <i className="bi bi-file-plus"></i>
+                    Add a quip
+                </button>
+                <button
+                    className="btn btn-lg btn-danger mb-3 w-100"
+                    onClick={resetAll}>
+                    <i className="bi bi-x-circle"></i>
+                    Remove all quips
                 </button>
                 <SideNav />
             </div>
