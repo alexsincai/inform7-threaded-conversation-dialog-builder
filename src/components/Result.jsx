@@ -60,7 +60,7 @@ const quipResult = ({
         ? `The printed name is "${printed}".[pp]The true-name is "${printed}".[pp]Understand "${printed}" as ${replacedQuipName}.`
         : "";
     const itMentions = mentions ? `It mentions ${mentions}.` : "";
-    const theComment = !nag
+    const theComment = !nag && !npc
         ? comment
             ? `The comment is "${comment.replace(/\n/gim, "[pp]")}".`
             : ""

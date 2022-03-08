@@ -165,15 +165,17 @@ const Form = () => {
                     onChange={setValue}
                 />
             </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text">The comment is</span>
-                <textarea
-                    id="comment"
-                    className="form-control"
-                    value={dialog.comment}
-                    onChange={setValue}
-                />
-            </div>
+            {!dialog.npc ? (
+                <div className="input-group mb-3">
+                    <span className="input-group-text">The comment is</span>
+                    <textarea
+                        id="comment"
+                        className="form-control"
+                        value={dialog.comment}
+                        onChange={setValue}
+                    />
+                </div>
+            ) : null}
             <div className="input-group mb-3">
                 <span className="input-group-text">The reply is</span>
                 <textarea
