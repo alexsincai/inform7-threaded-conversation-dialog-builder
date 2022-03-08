@@ -16,6 +16,7 @@ const Builder = () => {
             {
                 ...base,
                 name: quips[current].name ? quips[current].name : base.name,
+                scene: quips[current].scene ? quips[current].scene : base.scene,
             },
         ]);
         setCurrent(current + 1);
