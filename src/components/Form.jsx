@@ -30,6 +30,15 @@ const Form = () => {
     return (
         <form className="col-md-9">
             <div className="input-group mb-3">
+            <label className="input-group-text">
+                    <input
+                        id="addDashes"
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={dialog.addDashes}
+                        onChange={setCheck}
+                    />(Dash?)
+                </label>
                 <input
                     id="quipName"
                     className="form-control"
