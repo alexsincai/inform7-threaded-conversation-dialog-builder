@@ -42,7 +42,7 @@ const Form = () => {
                         checked={dialog.addDashes}
                         onChange={setCheck}
                     />
-                    (Dash?)
+                    (Kebab-cased) Quip name
                 </label>
                 <input
                     id="quipName"
@@ -51,7 +51,9 @@ const Form = () => {
                     value={dialog.quipName}
                     onChange={setValue}
                 />
-                <span className="input-group-text"> is a </span>
+            </div>
+            <div className="input-group mb-3">
+                <span className="input-group-text">It is a </span>
                 <label className="input-group-text">
                     <input
                         id="repeatable"
