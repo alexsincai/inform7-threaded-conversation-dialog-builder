@@ -16,7 +16,10 @@ const Form = () => {
                 value: lower(q.quipName, q.addDashes),
             })),
     ];
-    const characters = quips.map((q) => q.name);
+    const characters = quips
+        .map((q) => q.name.trim())
+        .filter((e, i, a) => !a.slice(0, i).includes(e))
+        .sort();
     const canChar = characters.length > 1;
 
     const setValue = (e) =>
@@ -107,6 +110,7 @@ const Form = () => {
                     value={dialog.name}
                     onChange={setValue}
                     list={canChar ? "characters" : null}
+                    multiple={canChar ? "characters" : null}
                 />
                 {canChar ? (
                     <datalist id="characters">
