@@ -37,12 +37,12 @@ const Form = () => {
         ]);
 
     return (
-        <form className="col-md-9">
+        <form className="col-md-8">
             <div className="input-group mb-3">
                 <label className="input-group-text">
                     <input
                         id="addDashes"
-                        className="form-check-input"
+                        className="form-check-input me-2"
                         type="checkbox"
                         checked={dialog.addDashes}
                         onChange={setCheck}
@@ -62,31 +62,31 @@ const Form = () => {
                 <label className="input-group-text">
                     <input
                         id="repeatable"
-                        className="form-check-input"
+                        className="form-check-input me-2"
                         type="checkbox"
                         checked={dialog.repeatable}
                         onChange={setCheck}
-                    />{" "}
+                    />
                     repeatable
                 </label>
                 <label className="input-group-text">
                     <input
                         id="npc"
-                        className="form-check-input"
+                        className="form-check-input me-2"
                         type="checkbox"
                         checked={dialog.npc}
                         onChange={setCheck}
-                    />{" "}
+                    />
                     NPC-directed
                 </label>
                 <label className="input-group-text">
                     <input
                         id="beatOpened"
-                        className="form-check-input"
+                        className="form-check-input me-2"
                         type="checkbox"
                         checked={dialog.beatOpened}
                         onChange={setCheck}
-                    />{" "}
+                    />
                     beat-opened
                 </label>
                 <select

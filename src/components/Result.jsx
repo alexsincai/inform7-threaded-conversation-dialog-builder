@@ -123,6 +123,7 @@ const Result = () => {
     const [quips] = useAtom(state.quips);
 
     const result = quips
+        .filter((q) => q.included)
         .map((e, i, a) =>
             a.length > 1 &&
             a

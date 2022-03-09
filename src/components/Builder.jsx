@@ -31,7 +31,7 @@ const Builder = () => {
     return (
         <div className="row">
             <Form />
-            <div className="col-md-3">
+            <div className="col-md-4">
                 <button
                     className="btn btn-lg btn-success mb-3 w-100"
                     onClick={addQuip}>

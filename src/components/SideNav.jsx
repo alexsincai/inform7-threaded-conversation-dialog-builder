@@ -36,10 +36,35 @@ const SideNav = () => {
         setQuips([...quips.filter((_, i) => i !== id)]);
     };
 
+    const setOutput = (e) => {
+        const id = parseInt(e.target.dataset.id, 10);
+        setQuips(
+            quips.map((q, i) =>
+                i !== id ? q : { ...q, included: e.target.checked }
+            )
+        );
+    };
+
     return (
         <ul className="list-group">
             {quips.map((q, i) => (
                 <li key={i} className={listItemClasses[i]}>
+                    <span className="align-items-center d-flex form-check form-check-inline">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            id={"include-" + i}
+                            data-id={i}
+                            onChange={setOutput}
+                            checked={q.included}
+                            title={`Include "${q.quipName}" in output?`}
+                        />
+                        <label
+                            className="visually-hidden"
+                            htmlFor={"include-" + i}>
+                            Include "{q.quipName}" in output?
+                        </label>
+                    </span>
                     <a
                         href="/"
                         data-id={i}
@@ -49,7 +74,7 @@ const SideNav = () => {
                     </a>
                     {quips.length > 1 && (
                         <button
-                            className="border-2 btn btn-outline-secondary fw-bold ms-auto"
+                            className="border-2 btn btn-outline-danger fw-bold ms-auto"
                             onClick={removeHandler}
                             data-id={i}>
                             &times;

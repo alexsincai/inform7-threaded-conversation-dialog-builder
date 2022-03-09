@@ -2,6 +2,7 @@ import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
 const base = {
+    included: true,
     addDashes: true,
     quipName: "quip name",
     npc: false,
