@@ -53,23 +53,23 @@ const quipResult = ({
     const isRepeatable = repeatable ? "repeatable" : "";
     const theType = npc ? "" : type;
     const showQuip = `${replacedQuipName} is a ${isRepeatable} ${npcDirected} ${isBeatOpened} ${theType} quip.`;
-    const theName = `It quip-supplies ${name}.`;
+    const theName = `${replacedQuipName} quip-supplies ${name}.`;
     const itFollows =
         following !== "none" && followed !== ""
-            ? `It ${following} ${followed}.`
+            ? `${replacedQuipName} ${following} ${followed}.`
             : "";
-    const properScene = scene ? `The proper scene is ${scene.trim()}.` : "";
+    const properScene = scene ? `The proper scene of ${replacedQuipName} is ${scene.trim()}.` : "";
     const shortened = printed
         ? printed
-              .replace(/\b(an?|it|of|and|the|that|she|her|he|him|his)\b/gim, "")
+              .replace(/\b(an?|it|of|and|the|that|she|her|he|him|his|to)\b/gim, "")
               .trim()
               .replace(/\s+/gim, " / ")
               .toLocaleLowerCase()
         : "";
     const printedName = printed
-        ? `The printed name is "${printed.trim()}".[pp]The true-name is "${printed.trim()}".[pp]Understand "${shortened}" as ${replacedQuipName}.`
+        ? `The printed name of ${replacedQuipName} is "${printed.trim()}".[pp]The true-name of ${replacedQuipName} is "${printed.trim()}".[pp]Understand "${shortened}" as ${replacedQuipName}.`
         : "";
-    const itMentions = mentions ? `It mentions ${mentions.trim()}.` : "";
+    const itMentions = mentions ? `${replacedQuipName} mentions ${mentions.trim()}.` : "";
     const theComment =
         !nag && !npc
             ? comment
