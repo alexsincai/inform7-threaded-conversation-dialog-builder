@@ -55,6 +55,7 @@ const Form = () => {
                     type="text"
                     value={dialog.quipName}
                     onChange={setValue}
+                    placeholder="Quip name"
                 />
             </div>
             <div className="input-group mb-3">
@@ -111,6 +112,7 @@ const Form = () => {
                     onChange={setValue}
                     list={canChar ? "characters" : null}
                     multiple={canChar ? "characters" : null}
+                    placeholder="Character name"
                 />
                 {canChar ? (
                     <datalist id="characters">
@@ -128,6 +130,7 @@ const Form = () => {
                     type="text"
                     value={dialog.printed}
                     onChange={setValue}
+                    placeholder="Printed name"
                 />
             </div>
             <div className="input-group mb-3">
@@ -138,6 +141,7 @@ const Form = () => {
                     className="form-control"
                     value={dialog.mentions}
                     onChange={setValue}
+                    placeholder="A subject"
                 />
             </div>
             {otherQuips.length ? (
@@ -179,6 +183,7 @@ const Form = () => {
                     type="text"
                     value={dialog.scene}
                     onChange={setValue}
+                    placeholder="Scene name"
                 />
             </div>
             {!dialog.npc ? (
@@ -189,6 +194,7 @@ const Form = () => {
                         className="form-control"
                         value={dialog.comment}
                         onChange={setValue}
+                        placeholder="Player says"
                     />
                 </div>
             ) : null}
@@ -199,6 +205,7 @@ const Form = () => {
                     className="form-control"
                     value={dialog.reply}
                     onChange={setValue}
+                    placeholder="Character replies"
                 />
             </div>
             {dialog.type === "restrictive" ? (
@@ -209,6 +216,7 @@ const Form = () => {
                         className="form-control"
                         value={dialog.nag}
                         onChange={setValue}
+                        placeholder="Character nags"
                     />
                 </div>
             ) : (
@@ -220,7 +228,8 @@ const Form = () => {
                     id="availability"
                     className="form-control"
                     value={dialog.availability}
-                    onChange={setValue}></textarea>
+                    onChange={setValue}
+                    placeholder="Availability rules"></textarea>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text">Report:</span>
@@ -228,7 +237,8 @@ const Form = () => {
                     id="report"
                     className="form-control"
                     value={dialog.report}
-                    onChange={setValue}></textarea>
+                    onChange={setValue}
+                    placeholder="Report rules"></textarea>
             </div>
         </form>
     );
