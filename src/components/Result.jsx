@@ -123,7 +123,6 @@ const Result = () => {
     const [quips] = useAtom(state.quips);
 
     const result = quips
-        .filter((q) => q.included)
         .map((e, i, a) =>
             a.length > 1 &&
             a
@@ -133,6 +132,7 @@ const Result = () => {
                 : { ...e, followed: "" }
         )
         .map(quipResult)
+        .filter((_, i) => quips[i].included)
         .join("\n\n\n");
 
     return (
