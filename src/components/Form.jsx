@@ -16,6 +16,8 @@ const Form = () => {
                 value: lower(q.quipName, q.addDashes),
             })),
     ];
+    const characters = quips.map((q) => q.name);
+    const canChar = characters.length > 1;
 
     const setValue = (e) =>
         setQuips([
@@ -104,7 +106,15 @@ const Form = () => {
                     type="text"
                     value={dialog.name}
                     onChange={setValue}
+                    list={canChar ? "characters" : null}
                 />
+                {canChar ? (
+                    <datalist id="characters">
+                        {characters.map((c, i) => (
+                            <option key={i} value={c}></option>
+                        ))}
+                    </datalist>
+                ) : null}
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text">The printed name is</span>

@@ -12,9 +12,9 @@ const App = () => {
 
     return (
         <>
-            {page === 0 && <Builder />}
-            {page === 1 && <Result />}
-            {page === 2 && (
+            {page === "editor" && <Builder />}
+            {page === "result" && <Result />}
+            {page === "about" && (
                 <>
                     <p>
                         This is a visual(ish) editor for creating dialog quips,

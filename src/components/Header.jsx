@@ -4,13 +4,13 @@ const Header = () => {
     return (
         <ul className="nav nav-tabs mb-3">
             <li className="nav-item">
-                <Link id={0}>Dialog editor</Link>
+                <Link id="editor">Dialog editor</Link>
             </li>
             <li className="nav-item">
-                <Link id={1}>Result</Link>
+                <Link id="result">Result</Link>
             </li>
             <li className="nav-item">
-                <Link id={2}>About</Link>
+                <Link id="about">About</Link>
             </li>
         </ul>
     );

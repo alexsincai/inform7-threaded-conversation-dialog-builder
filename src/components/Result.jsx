@@ -4,19 +4,18 @@ import state from "../state";
 const tabbedCleanup = (text, extra = false) => {
     if (!!text) {
         text += extra ? "\ncontinue the action;" : "";
-        return (
-            [...text.split("\n")]
-                // .map((x) => x.replace(/^\t*/gmi, ""))
-                .map((x) => x.trim())
-                .filter((x) => !!x)
-                .filter((e, i, a) => !a.slice(0, i).includes(e))
-                .map((x) => x.replace(/[;.\s]*$/gim, ""))
-                .map((x) => "[tt]" + x.replace(/[;.\s]*$/gim, ";"))
-                .map((x, i, a) =>
-                    i === a.length - 1 ? x.replace(/;$/gim, ".") : x
-                )
-                .join("[pp]")
-        );
+        return [...text.split("\n")]
+            .map((x) => x.trim())
+            .filter((x) => !!x)
+            .filter((e, i, a) => !a.slice(0, i).includes(e))
+            .map((x) => x.replace(/[;.\s]*$/gim, ""))
+            .map((x, i, a) => (i === 0 || a[i - 1] !== x ? x : ""))
+            .filter((x) => !!x)
+            .map((x) => "[tt]" + x.replace(/[;.\s]*$/gim, ";"))
+            .map((x, i, a) =>
+                i === a.length - 1 ? x.replace(/;$/gim, ".") : x
+            )
+            .join("[pp]");
     }
     return "";
 };

@@ -29,7 +29,7 @@ const state = {
     quips,
     base: atom(base),
     current,
-    page: atom(0),
+    page: atom("editor"),
 };
 
 export default state;
